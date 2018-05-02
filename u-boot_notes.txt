@@ -1,0 +1,11 @@
+fdisk usage for SD card creation for bootable Linux SD Card
+1st partition should be W95 FAT32 and second could be anyone of our choice.
+#Command for creating the boot partition
+mkfs.vfat -F 32 -n boot /dev/<name-of-partiton>
+#command for creating the root partition
+mkfs.ext3 -L rootfs /dev/<name-of-patition>
+#mount both the dev partitions to copy the MLO and U-boot to the boot partition
+mount /dev/mmc* /media/
+cp MLO /media/boot/MLO
+cp u-boot.img /media/boot/u-boot.img
+#Insert the SD Card in the Board and you can interact with the U-boot
